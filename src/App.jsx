@@ -13,7 +13,7 @@ export default function App() {
     const [clicked2, setClicked2] = useState(null);
     const [clicked3, setClicked3] = useState(null);
     const [clicked4, setClicked4] = useState(null);
-    const [darkMode, setDarkMode] = useState(false);
+    const [darkMode, setDarkMode] = useState(true);
     const [isTrue, setIsTrue] = useState(false);
 
     useEffect(() => {

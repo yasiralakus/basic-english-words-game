@@ -138,6 +138,9 @@ p, h1, h2, h3, h4, h5, h6 {
         & button {
             font-size: 14px;
         }
+        & button:hover {
+            background-color: #000;
+        }
     }
     
 }
