@@ -1,4 +1,4 @@
-import { useState } from "react"
+import { useEffect, useState } from "react"
 import { words } from "./Data"
 
 export default function App() {
@@ -14,7 +14,17 @@ export default function App() {
     const [clicked3, setClicked3] = useState(null);
     const [clicked4, setClicked4] = useState(null);
     const [darkMode, setDarkMode] = useState(false);
+    const [isTrue, setIsTrue] = useState(false);
 
+    useEffect(() => {
+        if (isTrue === true) {
+          const interval = setInterval(() => {
+            newQuestion();
+          }, 2500);
+    
+          return () => clearInterval(interval);
+        }
+      }, [isTrue]);
 
     function randomNumber(){
         return Math.floor(Math.random() * 998)
@@ -35,6 +45,7 @@ export default function App() {
         setClicked2(null);
         setClicked3(null);
         setClicked4(null);
+        setIsTrue(false);
         const randomNumber1 = randomNumber();
         const randomNumber2 = randomNumber();
         const randomNumber3 = randomNumber();
@@ -55,6 +66,7 @@ export default function App() {
         e.preventDefault();
         if(e.target.value === answer) {
             setClicked1(true)
+            setIsTrue(true);
         } else {
             setClicked1(false)
         }
@@ -64,6 +76,7 @@ export default function App() {
         e.preventDefault();
         if(e.target.value === answer) {
             setClicked2(true)
+            setIsTrue(true);
         } else {
             setClicked2(false)
         }
@@ -73,6 +86,7 @@ export default function App() {
         e.preventDefault();
         if(e.target.value === answer) {
             setClicked3(true)
+            setIsTrue(true);
         } else {
             setClicked3(false)
         }
@@ -82,6 +96,7 @@ export default function App() {
         e.preventDefault();
         if(e.target.value === answer) {
             setClicked4(true)
+            setIsTrue(true);
         } else {
             setClicked4(false)
         }
@@ -91,7 +106,7 @@ export default function App() {
 
         <div className="full-page" style={darkMode === true ? {backgroundColor: '#000'} : {}}>
 
-                <button style={darkMode === true ? {backgroundColor: '#f5f5f5', color: '#000'} : {}} id="new-question" onClick={() => (darkMode === true ? setDarkMode(false) : setDarkMode(true))}>Karanlık Mod</button>
+                <button style={darkMode === true ? {backgroundColor: '#f5f5f5', color: '#000'} : {}} id="new-question" onClick={() => (darkMode === true ? setDarkMode(false) : setDarkMode(true))}>{darkMode === true ? 'Aydınlık Mod' : 'Karanlık Mod'}</button>
                 <button style={darkMode === true ? {backgroundColor: '#f5f5f5', color: '#000'} : {}} id="new-question" onClick={newQuestion}>Yeni Soru</button>
 
             <div className="container" style={darkMode === true ? {backgroundColor: '#f5f5f5', color: '#000'} : {}}>
